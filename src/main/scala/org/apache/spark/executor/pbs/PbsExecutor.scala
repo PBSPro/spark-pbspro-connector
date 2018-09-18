@@ -3,6 +3,7 @@ package org.apache.spark.executor.pbs
 import java.net.URL
 
 import scala.collection.mutable
+import scala.sys.process._
 
 import org.apache.spark.executor.CoarseGrainedExecutorBackend
 
@@ -14,6 +15,7 @@ private[pbs] object PbsExecutor {
   }
 
   private def getHostname(): String = {
-    "ubuntu"  // TODO: Send the current hostname
+    val cmd = "hostname"
+    cmd.!!.trim()
   }
 }

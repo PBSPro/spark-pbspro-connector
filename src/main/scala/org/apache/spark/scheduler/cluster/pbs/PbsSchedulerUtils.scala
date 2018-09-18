@@ -27,7 +27,6 @@ private[pbs] object PbsSchedulerUtils {
       CoarseGrainedSchedulerBackend.ENDPOINT_NAME).toString
 
     val environ = ""                                        // TODO
-    val executorHostname = "ubuntu"                         // TODO
     val taskId = last_task                                  // TODO
     last_task += 1
     val appId = "APPID"                                     // TODO
@@ -42,7 +41,6 @@ private[pbs] object PbsSchedulerUtils {
     val runScript = new File(sparkHome, "bin/spark-class").getPath
 
     val opts = s"--driver-url $driverUrl" +
-        //s" --hostname $executorHostname" +
         s" --cores $numCores" +
         s" --app-id $appId" +
         //s" --worker-url ubuntu:13245" +
