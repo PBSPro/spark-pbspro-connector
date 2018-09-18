@@ -1,4 +1,4 @@
-package org.apache.spark.executor
+package org.apache.spark.executor.pbs
 
 import java.nio.ByteBuffer
 import java.net.URL
@@ -6,8 +6,9 @@ import java.net.URL
 import org.apache.spark.{SparkConf, SparkEnv, TaskState}
 import org.apache.spark.internal.Logging
 import org.apache.spark.rpc._
+import org.apache.spark.executor.CoarseGrainedExecutorBackend
 
-private[spark] class PbsCoarseGrainedExecutorBackend(
+private[pbs] class PbsCoarseGrainedExecutorBackend(
     rpcEnv: RpcEnv,
     driverUrl: String,
     executorId: String,

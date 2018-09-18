@@ -7,7 +7,7 @@ import org.apache.spark.scheduler.{TaskScheduler, TaskSchedulerImpl}
 import org.apache.spark.scheduler.cluster.CoarseGrainedSchedulerBackend
 import org.apache.spark.internal.Logging
 
-import org.apache.spark.executor.PbsExecutorInfo
+import org.apache.spark.executor.pbs.PbsExecutorInfo
 
 private[spark] class PbsCoarseGrainedSchedulerBackend(
     scheduler: TaskScheduler,

@@ -6,7 +6,7 @@ import scala.sys.process._
 
 import org.apache.spark.rpc.RpcEndpointAddress
 import org.apache.spark.SparkContext
-import org.apache.spark.executor.PbsExecutorInfo
+import org.apache.spark.executor.pbs.PbsExecutorInfo
 
 import org.apache.spark.scheduler.cluster.CoarseGrainedSchedulerBackend
 
@@ -42,14 +42,14 @@ private[pbs] object PbsSchedulerUtils {
     val runScript = new File(sparkHome, "bin/spark-class").getPath
 
     val opts = s"--driver-url $driverUrl" +
-        s" --hostname $executorHostname" +
+        //s" --hostname $executorHostname" +
         s" --cores $numCores" +
         s" --app-id $appId" +
         //s" --worker-url ubuntu:13245" +
         //s" --user-class-path file://" +
         s" --executor-id $taskId"
 
-    val command = s"$runScript org.apache.spark.executor.PbsCoarseGrainedExecutorBackend $opts"
+    val command = s"$runScript org.apache.spark.executor.pbs.PbsExecutor $opts"
 
     val cmd = s"/opt/pbs/bin/qsub -N spark-job-$appId-$taskId -l select=1:ncpus=$numCores -- $command"
     val out = cmd.!!
