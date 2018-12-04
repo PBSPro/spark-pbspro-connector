@@ -1,4 +1,4 @@
-From 9d542834d5f2d10d5915a05058e205b79aca20d6 Mon Sep 17 00:00:00 2001
+From ef9ab34ce5380d3f33b5c7fe730850f76469d4be Mon Sep 17 00:00:00 2001
 From: Utkarsh <utkarsh.maheshwari@altair.com>
 Date: Tue, 11 Sep 2018 11:56:38 +0530
 Subject: [PATCH 3/3] Allow submitting spark-submit apps in client mode
@@ -8,7 +8,7 @@ Subject: [PATCH 3/3] Allow submitting spark-submit apps in client mode
  1 file changed, 43 insertions(+), 9 deletions(-)
 
 diff --git a/core/src/main/scala/org/apache/spark/deploy/SparkSubmit.scala b/core/src/main/scala/org/apache/spark/deploy/SparkSubmit.scala
-index 263cf42..4737536 100644
+index 03a19a7..d6103ac 100644
 --- a/core/src/main/scala/org/apache/spark/deploy/SparkSubmit.scala
 +++ b/core/src/main/scala/org/apache/spark/deploy/SparkSubmit.scala
 @@ -279,6 +279,14 @@ private[spark] class SparkSubmit extends Logging {
@@ -34,8 +34,8 @@ index 263cf42..4737536 100644
      val isPbsCluster = clusterManager == PBS && deployMode == CLUSTER
  
      if (!isMesosCluster && !isStandAloneCluster) {
-@@ -543,20 +552,20 @@ private[spark] class SparkSubmit extends Logging {
-       OptionAssigner(args.keytab, YARN, ALL_DEPLOY_MODES, confKey = "spark.yarn.keytab"),
+@@ -545,20 +554,20 @@ private[spark] class SparkSubmit extends Logging {
+       OptionAssigner(args.archives, YARN, ALL_DEPLOY_MODES, confKey = "spark.yarn.dist.archives"),
  
        // Other options
 -      OptionAssigner(args.executorCores, STANDALONE | YARN | KUBERNETES, ALL_DEPLOY_MODES,
@@ -64,7 +64,7 @@ index 263cf42..4737536 100644
          confKey = "spark.driver.cores"),
        OptionAssigner(args.supervise.toString, STANDALONE | MESOS, CLUSTER,
          confKey = "spark.driver.supervise"),
-@@ -718,6 +727,29 @@ private[spark] class SparkSubmit extends Logging {
+@@ -721,6 +730,29 @@ private[spark] class SparkSubmit extends Logging {
        }
      }
  
@@ -94,7 +94,7 @@ index 263cf42..4737536 100644
      // Load any properties specified through --conf and the default properties file
      for ((k, v) <- args.sparkProperties) {
        sparkConf.setIfMissing(k, v)
-@@ -905,6 +937,8 @@ object SparkSubmit extends CommandLineUtils with Logging {
+@@ -908,6 +940,8 @@ object SparkSubmit extends CommandLineUtils with Logging {
    private[deploy] val STANDALONE_CLUSTER_SUBMIT_CLASS = classOf[ClientApp].getName()
    private[deploy] val KUBERNETES_CLUSTER_SUBMIT_CLASS =
      "org.apache.spark.deploy.k8s.submit.KubernetesClientApplication"

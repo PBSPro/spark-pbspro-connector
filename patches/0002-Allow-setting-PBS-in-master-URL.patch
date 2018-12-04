@@ -1,4 +1,4 @@
-From 60d6da34b31d022e4ef4f96d28d8dfcbc32d42b3 Mon Sep 17 00:00:00 2001
+From 69a388c0edcc37cc24cbfb2238ff4a8da07e60b1 Mon Sep 17 00:00:00 2001
 From: Utkarsh <utkarsh.maheshwari@altair.com>
 Date: Thu, 30 Aug 2018 15:28:05 +0530
 Subject: [PATCH 2/3] Allow setting PBS in master URL
@@ -8,7 +8,7 @@ Subject: [PATCH 2/3] Allow setting PBS in master URL
  1 file changed, 5 insertions(+), 2 deletions(-)
 
 diff --git a/core/src/main/scala/org/apache/spark/deploy/SparkSubmit.scala b/core/src/main/scala/org/apache/spark/deploy/SparkSubmit.scala
-index cf902db..263cf42 100644
+index d4055cb..03a19a7 100644
 --- a/core/src/main/scala/org/apache/spark/deploy/SparkSubmit.scala
 +++ b/core/src/main/scala/org/apache/spark/deploy/SparkSubmit.scala
 @@ -230,8 +230,9 @@ private[spark] class SparkSubmit extends Logging {
@@ -30,7 +30,7 @@ index cf902db..263cf42 100644
  
      if (!isMesosCluster && !isStandAloneCluster) {
        // Resolve maven dependencies if there are any and add classpath to jars. Add them to py-files
-@@ -879,7 +881,8 @@ object SparkSubmit extends CommandLineUtils with Logging {
+@@ -882,7 +884,8 @@ object SparkSubmit extends CommandLineUtils with Logging {
    private val MESOS = 4
    private val LOCAL = 8
    private val KUBERNETES = 16
