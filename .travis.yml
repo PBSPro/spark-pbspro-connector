@@ -6,4 +6,4 @@ jdk: oraclejdk8
 install: true
 
 script:
-  - travis_wait sh check_build.sh
+  - travis_wait ./check_build.sh

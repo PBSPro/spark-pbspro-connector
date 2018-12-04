@@ -3,8 +3,14 @@
 spark_repo="https://github.com/apache/spark"
 pbs_repo="https://github.com/UtkarshMe/Spark-PBSPro"
 
+cleanup() {
+  cd /
+  rm -rf /tmp/spark
+}
+
 quit() {
   echo "$1"
+  cleanup
   exit 1
 }
 
@@ -21,4 +27,7 @@ git clone $pbs_repo resource-managers/pbs   || quit "Unable to clone pbs repo"
 git am resource-managers/pbs/*.patch        || quit "Unable to apply patch to spark"
 
 # build
-build/mvn -T 4 -q -DskipTests -Ppbs package || quit "Unable to build spark with pbs"
+export MAVEN_SKIP_RC=1
+build/mvn -q -DskipTests -Ppbs package      || quit "Unable to build spark with pbs"
+
+cleanup
