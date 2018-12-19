@@ -4,7 +4,7 @@ HPC resource manager in [Apache Spark](https://github.com/apache/spark).
 
 
 ### Status of build with latest Spark
-[![Build Status](https://travis-ci.org/UtkarshMe/Spark-PBSPro.svg?branch=master)](https://travis-ci.org/UtkarshMe/Spark-PBSPro)
+[![Build Status](https://travis-ci.org/sakshamgarg/Spark-PBSPro.svg?branch=master)](https://travis-ci.org/sakshamgarg/Spark-PBSPro)
 
 
 ## Usage
