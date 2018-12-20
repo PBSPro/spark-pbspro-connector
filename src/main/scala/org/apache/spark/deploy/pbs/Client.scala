@@ -49,6 +49,7 @@ private[pbs] class Client(args: ClientArguments, sparkConf: SparkConf) extends L
     val appName: String = "sparkjob-" + sparkConf.getOption("spark.app.name")
       .getOrElse(defaultAppName)
       .replaceAll("\\s", "")
+      .replaceAll("\\.", "-")
     val driverCores: Int = sparkConf.getOption("spark.driver.cores") match {
       case Some(cores) => cores.toInt
       case None => defaultDriverCores
