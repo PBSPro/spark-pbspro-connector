@@ -4,7 +4,7 @@ HPC resource manager in [Apache Spark](https://github.com/apache/spark).
 
 
 ### Status of build with latest Spark
-[![Build Status](https://travis-ci.org/sakshamgarg/Spark-PBSPro.svg?branch=master)](https://travis-ci.org/sakshamgarg/Spark-PBSPro)
+[![Build Status](https://travis-ci.org/PBSPro/spark-pbspro-connector.svg?branch=master)](https://travis-ci.org/PBSPro/spark-pbspro-connector)
 
 
 ## Usage
@@ -45,7 +45,7 @@ cd spark
 In the spark project root, punch in these commands:
 ```bash
 # Clone the repo
-git clone https://github.com/sakshamgarg/Spark-PBSPro resource-managers/pbs
+git clone https://github.com/PBSPro/spark-pbspro-connector resource-managers/pbs
 
 # Apply patch to spark (in the root directory).
 git am resource-managers/pbs/*.patch

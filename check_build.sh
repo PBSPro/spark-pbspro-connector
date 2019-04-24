@@ -1,7 +1,7 @@
 #!/bin/sh
 
 spark_repo="https://github.com/apache/spark"
-pbs_repo="https://github.com/sakshamgarg/Spark-PBSPro"
+pbs_repo="https://github.com/PBSPro/spark-pbspro-connector"
 
 cleanup() {
   cd /
