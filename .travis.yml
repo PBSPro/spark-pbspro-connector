@@ -3,11 +3,20 @@ scala:
   - 2.12.7
 jdk: oraclejdk8
 
-branches:
-  only:
-    - master
+env:
+ - spark_dir="/tmp/spark" spark_repo="https://github.com/apache/spark"
 
-install: true
+services:
+  - docker
+
+install:
+  - sh ci/setup_project.sh
+  - cd $spark_dir/resource-managers/pbs
 
 script:
-  - travis_wait ./check_build.sh
+  - travis_wait sh ci/patch_build.sh
+
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: sh ci/deploy_docker.sh
