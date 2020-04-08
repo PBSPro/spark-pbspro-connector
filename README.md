@@ -50,9 +50,14 @@ git clone https://github.com/PBSPro/spark-pbspro-connector resource-managers/pbs
 # Apply patch to spark (in the root directory).
 git am resource-managers/pbs/*.patch
 
+# Note: Spark requires javac for bulding
 # Build!
 build/mvn -DskipTests -Ppbs package
 ```
+
+Additional information for building spark can be found here:
+
+https://spark.apache.org/docs/latest/building-spark.html#building-spark
 
 Add executor home to your configuration:
 ```bash
