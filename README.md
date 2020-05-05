@@ -21,8 +21,7 @@ You can run Spark on the PBS cluster just by adding "--master pbs" while submitt
 ./bin/spark-submit --master pbs --deploy-mode cluster --class org.apache.spark.examples.SparkPi $SPARK_HOME/examples/target/scala-2.12/jars/spark-examples_2.12-3.1.0-SNAPSHOT.jar 100
 ```
 
-You can also just append `spark.master pbs` in `conf/spark-defaults.conf` to avoid adding
-`--master pbs` on every submit.
+Optional: See installation step appending `spark.master pbs` in `conf/spark-defaults.conf` to avoid adding `--master pbs` on every submit.
 
 
 To run Spark UI with PBS cluster:
@@ -31,18 +30,26 @@ bin/spark-class org.apache.spark.deploy.pbs.ui.PbsClusterUI
 ```
 
 
-
 ## Installation
 
-This expects PBSPro to be installed at `/opt/pbs`.
+### Requirements
+1. PBS Professional must be installed in default locaiton, at `/opt/pbs`.
+2. Confirm host resources (CPU, Memory, and Disk) are sufficient for Spark project and build
+3. Spark project must be accessible by the submission host (PBS Client) and execution host(s) (PBS MoM), which is consistent on all hosts. 
 
-Clone the Spark repository and move to spark folder
+
+### Steps
+Clone the Spark repository to the host
 ```bash
 git clone https://github.com/apache/spark.git
+```
+
+Change directory to spark folder
+```bash
 cd spark
 ```
 
-In the spark project root, punch in these commands:
+Execute these commands:
 ```bash
 # Clone the repo
 git clone https://github.com/PBSPro/spark-pbspro-connector resource-managers/pbs
@@ -54,8 +61,15 @@ git am resource-managers/pbs/*.patch
 build/mvn -DskipTests -Ppbs package
 ```
 
-Add executor home to your configuration:
+Update `conf/sparks-default.conf` by adding executor home to your configuration:
 ```bash
 # in file conf/spark-defaults.conf add line:
-spark.pbs.executor.home "SPARK INSTALLATION DIRECTORY PATH IN PBS MOMS"
+spark.pbs.executor.home /common/path/to/spark/folder/on/hosts
+```
+
+Optional: Append `spark.master pbs` in `conf/spark-defaults.conf` to avoid adding `--master pbs` on every submit.
+```bash
+# in file conf/spark-defaults.conf:
+spark.pbs.executor.home /common/path/to/spark/folder/on/hosts
+spark.master pbs
 ```
