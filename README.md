@@ -34,7 +34,7 @@ bin/spark-class org.apache.spark.deploy.pbs.ui.PbsClusterUI
 
 ### Requirements
 1. PBS Professional must be installed in default locaiton, at `/opt/pbs`.
-2. Confirm host resources (CPU, Memory, and Disk) are sufficient for Spark project and build
+2. Confirm host resources (CPU, Memory, and Disk) are sufficient for Spark project and build. More information about these resource requirements can be found at https://spark.apache.org/docs/latest/hardware-provisioning.html
 3. Spark project must be accessible by the submission host (PBS Client) and execution host(s) (PBS MoM), which is consistent on all hosts. 
 
 
