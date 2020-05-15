@@ -81,6 +81,7 @@ private[spark] class PbsCoarseGrainedSchedulerBackend(
    */
   override def stop() {
     logInfo("Stopping PBS Scheduler backend")
+    super.stop()
   }
 
   /**
